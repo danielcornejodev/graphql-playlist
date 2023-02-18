@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 //destructuring grabs function GraphQLObjectType from graphql variable. 
 //this code grabs different properties from the graphql package.
-const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
 
 //Dummy data
 var books = [
@@ -15,7 +15,7 @@ var books = [
 const BookType = new GraphQLObjectType({
     name: 'Book',
     fields: () => ({
-        id: { type: GraphQLString },
+        id: { type: GraphQLID },
         name: { type: GraphQLString },
         genre: { type: GraphQLString }
     })
@@ -29,10 +29,11 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         book: {
             type: BookType,
-            args: {id: { type: GraphQLString }},
-            resolve(parent, arg){
+            args: {id: { type: GraphQLID }},
+            resolve(parent, args){
                 //using lodash to look through the books array and finding any book with the id that has been attached the args.id that user sends along.
-                return _.find(books, {id: this.args.id})
+                //args to id is converted to a string tyoe. You can verify by console.logging typeof args.id
+                return _.find(books, {id: args.id})
             }
         }
     }
