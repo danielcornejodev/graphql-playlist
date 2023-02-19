@@ -43,7 +43,13 @@ const AuthorType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         age: { type: GraphQLInt},
-        name: { type: GraphQLString }
+        name: { type: GraphQLString },
+        books: {
+            type: new GraphQLList(BookType),
+            resolve(parent, args){
+                //return _.filter(books, { authorId: parent.id });
+            }
+        }
     })
 });
 
@@ -74,11 +80,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args){
                 // return books
             }
-                    books: {
-            type: new GraphQLList(BookType),
-            resolve(parent, args){
-                // return books
-            }
+        },
         authors: {
             type: new GraphQLList(AuthorType),
             resolve(parent, args){
@@ -86,9 +88,31 @@ const RootQuery = new GraphQLObjectType({
             }
         }
     }
-})
+});
+
+//Mutation means add, edit, delete data. 
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addAuthor: {
+            type: AuthorType,
+            args: {
+                name: { type: GraphQLString },
+                age: { type: GraphQLInt }
+            },
+            resolve(parent, args){
+                let author = new Author({
+                    name: args.name,
+                    age: args.age
+                })
+                return author.save()
+            }
+        }
+    }
+});
 
 //defining which query we are allowing user to use when they are making queries from the front end.
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: Mutation
 });
