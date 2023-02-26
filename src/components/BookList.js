@@ -5,6 +5,7 @@ const GET_BOOKS = gql`
     books {
       name
       id
+      genre
     }
   }
 `;
@@ -18,8 +19,8 @@ export default function Booklist({ onBookSelected }) {
     return (
       <select name='book' onChange={onBookSelected}>
         {data.books.map((book) => (
-          <option key={book.id} value={book.genre}>
-            {book.genre}
+          <option key={book.id} value={book.name}>
+            {book.name}
           </option>
         ))}
       </select>
