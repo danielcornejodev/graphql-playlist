@@ -1,10 +1,27 @@
+import { gql, useQuery } from '@apollo/client';
 
-export default function Booklist() {
+const GET_BOOKS = gql`
+  query GetBooks {
+    books {
+      name
+      id
+    }
+  }
+`;
+
+export default function Booklist({ onBookSelected }) {
+    const { loading, error, data } = useQuery(GET_BOOKS);
+  
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+  
     return (
-      <div id="name">
-        <ul id="book-list">
-            <li>Book name</li>
-        </ul>
-      </div>
+      <select name='book' onChange={onBookSelected}>
+        {data.books.map((book) => (
+          <option key={book.id} value={book.genre}>
+            {book.genre}
+          </option>
+        ))}
+      </select>
     );
   }
