@@ -17,6 +17,7 @@ export default function Booklist({ onBookSelected }) {
     if (error) return `Error! ${error.message}`;
   
     return (
+        <>
       <select name='book' onChange={onBookSelected}>
         {data.books.map((book) => (
           <option key={book.id} value={book.name}>
@@ -24,5 +25,13 @@ export default function Booklist({ onBookSelected }) {
           </option>
         ))}
       </select>
+      <select name='book' onChange={onBookSelected}>
+        {data.books.map((book) => (
+          <option key={book.id} value={book.genre}>
+            {book.genre}
+          </option>
+        ))}
+      </select>
+      </>
     );
   }
