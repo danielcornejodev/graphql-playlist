@@ -18,20 +18,18 @@ export default function Booklist({ onBookSelected }) {
   
     return (
         <>
-      <select name='book' onChange={onBookSelected}>
+      {/* <select name='book' onChange={onBookSelected}>
         {data.books.map((book) => (
           <option key={book.id} value={book.name}>
             {book.name}
           </option>
         ))}
-      </select>
-      <select name='book' onChange={onBookSelected}>
-        {data.books.map((book) => (
-          <option key={book.id} value={book.genre}>
-            {book.genre}
-          </option>
+      </select> */}
+      <ul>
+      {data.books.map((book) => (
+        <li key={book.id} value={book.name}>{book.name}</li>
         ))}
-      </select>
+      </ul>
       </>
     );
   }
