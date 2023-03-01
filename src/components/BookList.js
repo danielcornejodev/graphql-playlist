@@ -27,7 +27,7 @@ export default function Booklist({ onBookSelected }) {
       </select> */}
       <ul>
       {data.books.map((book) => (
-        <li key={book.id} value={book.name}>{book.name}</li>
+        <li key={book.id}>{book.name}</li>
         ))}
       </ul>
       </>
