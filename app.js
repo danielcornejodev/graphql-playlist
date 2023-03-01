@@ -40,6 +40,6 @@ mongoose.connection.once('open', () => {
 // app.listen(5501, () => {
 //     console.log('now listening for requests on port 5501');
 // })
-server.listen(4000, () => {
-    console.info('Server is running on http://localhost:4000/graphql')
+server.listen(5500, () => {
+    console.info('Server is running on http://localhost:5500/graphql')
   })
