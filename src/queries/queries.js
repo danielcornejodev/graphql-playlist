@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const GET_AUTHORS = gql`
+export const GET_AUTHORS = gql`
   query GetAuthors {
     authors {
       name
@@ -9,7 +9,7 @@ const GET_AUTHORS = gql`
   }
 `;
 
-const GET_BOOKS = gql`
+export const GET_BOOKS = gql`
   query GetBooks {
     books {
       name
