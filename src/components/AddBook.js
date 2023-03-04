@@ -22,15 +22,18 @@ export default function AddBook({ onAuthorSelected }) {
           </label>
           <input type="text" />
         </div>
+        <div>
+          <label>Author:</label>
+          <select name='author' onChange={onAuthorSelected}>
+          <option>Select Author</option>
+          {data.authors.map((author) => (
+              <option key={author.id} value={author.name}>
+                {author.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </form>  
-      <select name='author' onChange={onAuthorSelected}>
-        <option>Select Author</option>
-        {data.authors.map((author) => (
-          <option key={author.id} value={author.name}>
-            {author.name}
-          </option>
-        ))}
-      </select>
       </>
     );
   }
