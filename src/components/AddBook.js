@@ -5,15 +5,21 @@ import { useState } from 'react';
 
 export default function AddBook() {
     const { loading, error, data } = useQuery(GET_AUTHORS);
-    const [Name, setName] = useState("");
+    const [name, setName] = useState("");
     const [genre, setGenre] = useState("");
     const [authorId, setAuthorId] = useState("");
   
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
+
+    function submitForm(e){
+      e.preventDefault()
+      console.log(name, genre, authorId);
+    }
+
     return (
       <>
-      <form>
+      <form onSubmit={ submitForm }>
         <div className="field">
           <label>
             Book name:
