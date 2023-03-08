@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 export default function AddBook() {
     
-    // const [mutateFunction, { data, loading, error }] = useMutation(ADD_BOOK);
 
     const [newBook, setNewBook] = useState({
       name: '',
@@ -26,8 +25,11 @@ export default function AddBook() {
           </option>
         ))
       }
-      
     } 
+
+    function AddBookMutation() {
+      const [mutateFunction, { data, loading, error }] = useMutation(ADD_BOOK);
+    }
   
 
     function handleNameChange(e) {
@@ -54,6 +56,7 @@ export default function AddBook() {
     function submitForm(e){
       e.preventDefault()
       console.log(newBook);
+      // AddBookMutation();
     }
 
     return (
