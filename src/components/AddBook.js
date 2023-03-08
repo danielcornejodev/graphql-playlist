@@ -4,16 +4,31 @@ import { useState } from 'react';
 
 
 export default function AddBook() {
-    const { loading, error, data } = useQuery(GET_AUTHORS);
+    
+    // const [mutateFunction, { data, loading, error }] = useMutation(ADD_BOOK);
 
     const [newBook, setNewBook] = useState({
       name: '',
       genre: '',
       authorId: ''
     })
+
+    function QueryAuthors() {
+      const { loading, error, data } = useQuery(GET_AUTHORS);
+      if (loading) {
+        return 'Loading...';
+      } else if (error) {
+        return `Error! ${error.message}`;
+      } else {
+        return data.authors.map((author) => (
+          <option key={author.id} value={author.id}>
+            {author.name}
+          </option>
+        ))
+      }
+      
+    } 
   
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
 
     function handleNameChange(e) {
       setNewBook({
@@ -60,11 +75,7 @@ export default function AddBook() {
           <label>Author:</label>
           <select name='author' onChange={handleAuthorIdChange}>
           <option>Select Author</option>
-          {data.authors.map((author) => (
-              <option key={author.id} value={author.id}>
-                {author.name}
-              </option>
-            ))}
+          {QueryAuthors()}
           </select>
         </div>
         <button>+</button>
