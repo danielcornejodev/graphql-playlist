@@ -4,8 +4,6 @@ import { useState } from 'react';
 
 
 export default function AddBook() {
-    
-
     const [newBook, setNewBook] = useState({
       name: '',
       genre: '',
@@ -27,9 +25,11 @@ export default function AddBook() {
       }
     } 
 
-    function AddBookMutation() {
-      const [mutateFunction, { data, loading, error }] = useMutation(ADD_BOOK);
-    }
+
+    const [AddBookMutation, { data, loading, error }] = useMutation(ADD_BOOK);
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
+  
   
 
     function handleNameChange(e) {
@@ -55,8 +55,11 @@ export default function AddBook() {
 
     function submitForm(e){
       e.preventDefault()
-      console.log(newBook);
-      // AddBookMutation();
+      AddBookMutation({ variables: { 
+        name: newBook.name,
+        genre: newBook.genre,
+        authorId: newBook.authorId
+       } });
     }
 
     return (
