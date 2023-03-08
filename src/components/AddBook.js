@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_AUTHORS, ADD_BOOK } from '../queries/queries';
+import { GET_AUTHORS, ADD_BOOK, GET_BOOKS } from '../queries/queries';
 import { useState } from 'react';
 
 
@@ -55,11 +55,14 @@ export default function AddBook() {
 
     function submitForm(e){
       e.preventDefault()
-      AddBookMutation({ variables: { 
-        name: newBook.name,
-        genre: newBook.genre,
-        authorId: newBook.authorId
-       } });
+      AddBookMutation({ 
+        variables: { 
+          name: newBook.name,
+          genre: newBook.genre,
+          authorId: newBook.authorId
+        },
+          refetchQueries: [{query: GET_BOOKS}] // DocumentNode object parsed with gql
+        });
     }
 
     return (
