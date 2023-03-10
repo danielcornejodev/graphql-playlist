@@ -10,18 +10,21 @@ export default function AddBook() {
       authorId: ''
     })
 
+    const { data: queryData, loading: queryLoading, error: queryError } = useQuery(GET_AUTHORS);
+
     function QueryAuthors() {
-      const { loading, error, data } = useQuery(GET_AUTHORS);
-      if (loading) {
+      if (queryLoading) {
         return 'Loading...';
-      } else if (error) {
+      } else if (queryError) {
         return `Error! ${error.message}`;
       } else {
-        return data.authors.map((author) => (
+        return queryData.authors.map((author) => {
+          return (
           <option key={author.id} value={author.id}>
             {author.name}
           </option>
-        ))
+          )
+        })
       }
     } 
 

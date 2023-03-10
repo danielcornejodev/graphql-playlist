@@ -9,13 +9,6 @@ export default function Booklist({ onBookSelected }) {
   
     return (
         <>
-      {/* <select name='book' onChange={onBookSelected}>
-        {data.books.map((book) => (
-          <option key={book.id} value={book.name}>
-            {book.name}
-          </option>
-        ))}
-      </select> */}
       <ul>
       {data.books.map((book) => (
         <li key={book.id}>{book.name}</li>
