@@ -12,7 +12,7 @@ BookList is a React component that displays a list of books and allows the user 
 
 The component contains a useQuery hook that fetches all books from the database using the GET_BOOKS query. The data, loading, and error properties are destructured from the hook's return value. The component also uses the useState hook to define the initial state of the selectedBookId variable, which is used to track which book the user has selected.
 
-When the component is rendered, the data.books array is mapped to a list of <li> elements, each displaying the name of a book. When a book is clicked, the setSelectedBookId function is called to update the selectedBookId state variable to the id of the clicked book.
+When the component is rendered, the data.books array is mapped to a list of li tag elements, each displaying the name of a book. When a book is clicked, the setSelectedBookId function is called to update the selectedBookId state variable to the id of the clicked book.
 
 The component also renders a BookDetails component, passing in the selectedBookId state variable as a prop. This component is responsible for fetching the details of the selected book using another GraphQL query and rendering them on the screen.
 
