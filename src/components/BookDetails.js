@@ -2,21 +2,25 @@ import { useQuery } from '@apollo/client';
 import { GET_BOOK } from '../queries/queries';
 
 export default function BookDetails({ selectedBookId }) {
-    const { loading, error, data: book } = useQuery(GET_BOOK);
+    const { loading, error, data } = useQuery(GET_BOOK, {
+        variables: { selectedBookId },
+      });
   
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
 
+    console.log(data);
+
     function displayBookDetails(){
-        if(book){
+        if(data.book){
             return(
                 <div>
-                    <h2>{ book.name }</h2>
-                    <p>{ book.genre }</p>
-                    <p>{ book.author.name }</p>
+                    <h2>{ data.book.name }</h2>
+                    <p>{ data.book.genre }</p>
+                    <p>{ data.book.author.name }</p>
                     <p>All books by this author:</p>
                     <ul className="other-books">
-                        { book.author.books.map(item => {
+                        { data.book.author.books.map(item => {
                             return <li key={item.id}>{ item.name }</li>
                         })}
                     </ul>
@@ -31,7 +35,7 @@ export default function BookDetails({ selectedBookId }) {
   
     return (
         <div id='book-details'>
-            Book Details here
+            { displayBookDetails() }
         </div>
     );
   }

@@ -29,8 +29,8 @@ export const ADD_BOOK = gql`
 `;
 
 export const GET_BOOK = gql`
-  query($id: ID){
-    book(id: $id){
+  query($selectedBookId: ID){
+    book(id: $selectedBookId){
       id
       name
       genre
