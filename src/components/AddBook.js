@@ -70,7 +70,7 @@ export default function AddBook() {
 
     return (
       <>
-      <form onSubmit={ submitForm }>
+      <form id="add-book" onSubmit={ submitForm }>
         <div className="field">
           <label>
             Book name:
@@ -83,7 +83,7 @@ export default function AddBook() {
           </label>
           <input type="text" onChange={handleGenreChange}/>
         </div>
-        <div>
+        <div className="field">
           <label>Author:</label>
           <select name='author' onChange={handleAuthorIdChange}>
           <option>Select Author</option>

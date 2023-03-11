@@ -14,7 +14,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <div id="name">
-        <h1>Reading List</h1>
+        <h1>My Reading List</h1>
         <Booklist />
         <AddBook />
       </div>
