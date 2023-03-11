@@ -1,5 +1,4 @@
 const express = require('express');
-const { createHandler } = require('graphql-http/lib/use/express');
 const schema = require('./schema/schema');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -27,19 +26,7 @@ mongoose.connection.once('open', () => {
     console.log('connected to database');
 })
 
-// app.all('/graphql', createHandler({
-//     schema,
-//     graphiql: true
-// }));
 
-// app.all('/graphql', createHandler({ 
-//     schema, 
-//     graphiql: true 
-// }));
-
-// app.listen(5501, () => {
-//     console.log('now listening for requests on port 5501');
-// })
 server.listen(5500, () => {
     console.info('Server is running on http://localhost:5500/graphql')
   })
